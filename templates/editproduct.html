@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Product - UrbanAura</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="mb-4">✏️ Edit Product</h2>
+        <form method="POST" action="/update_product/{{ product.id }}">
+            <div class="mb-3">
+                <label>Name</label>
+                <input name="name" class="form-control" value="{{ product.name }}" required>
+            </div>
+            <div class="mb-3">
+                <label>Price</label>
+                <input name="price" type="number" class="form-control" value="{{ product.price }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href="/admin" class="btn btn-secondary ms-2">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

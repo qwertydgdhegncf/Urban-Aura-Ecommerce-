@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Cart - UrbanAura</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .btn-warning {
+      color: white;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body class="p-4">
+  <div class="container">
+    <h2 class="mb-4 text-center">🛒 Your Cart</h2>
+
+    {% if cart %}
+      <table class="table table-bordered bg-white shadow-sm">
+        <thead class="table-dark">
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart %}
+            <tr>
+              <td>{{ item.name }}</td>
+              <td>${{ item.price }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <h4>Total ({{ cart|length }} items): ${{ total }}</h4>
+
+      <!-- Email Form to Confirm Order -->
+      <form action="/confirm_order" method="POST" class="mt-4 d-flex flex-column flex-md-row gap-3 align-items-start">
+        <input type="email" name="email" class="form-control w-auto" placeholder="Enter your email" required>
+        <button type="submit" class="btn btn-warning">📧 Confirm Order & Send Email</button>
+      </form>
+
+      <!-- Navigation Buttons -->
+      <div class="mt-4 d-flex flex-wrap gap-3">
+        <a href="/checkout" class="btn btn-success">✅ Proceed to Checkout</a>
+        <a href="/clear_cart" class="btn btn-danger">🗑️ Clear Cart</a>
+        <a href="/" class="btn btn-secondary">➕ Continue Shopping</a>
+      </div>
+
+    {% else %}
+      <div class="alert alert-info mt-4">
+        Your cart is empty. Go back and <a href="/" class="alert-link">add some items</a>!
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
