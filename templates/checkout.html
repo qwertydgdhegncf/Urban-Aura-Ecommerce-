@@ -78,6 +78,16 @@
   </style>
 </head>
 <body>
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes">
+      {% for message in messages %}
+        <li style="color: green; font-weight: bold;">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
 
   <h1>🛒 Your Cart</h1>
 
@@ -103,14 +113,10 @@
   <button type="submit" class="btn btn-primary">Confirm Order</button>
 </form>
 
-<form method="POST" action="/checkout">
-  <!-- Other checkout fields -->
-
-  <input type="text" name="coupon_code" placeholder="Enter Coupon Code" class="form-control mb-2">
-
-  <button type="submit" class="btn btn-primary">Place Order</button>
+<form method="POST" action="/apply_coupon">
+    <input type="text" name="coupon_code" placeholder="Enter coupon code">
+    <button type="submit">Apply Coupon</button>
 </form>
-
 
 
 </body>

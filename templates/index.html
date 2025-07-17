@@ -86,7 +86,7 @@
         <div class="product" data-name="{{ product.name }}" data-category="{{ product.get('category', 'Accessories') }}">
             <h3>{{ product.name }}</h3>
             <p>${{ product.price }}</p>
-            <a href="/add_to_cart/{{ loop.index0 }}"><button>Add to Cart</button></a>
+            <a href="{{ url_for('add_to_cart', product_id=product.id) }}">Add to Cart</a>
         </div>
         {% endfor %}
     </div>
